@@ -1,61 +1,70 @@
-var questions = [{
+var quizPage = document.getElementById("quiz-page");
+
+var questions = [
+  {
     question: "I am question 1",
-    choice1: "correct answer",
-    choice2: "incorrect answer",
-    choice3:"incorrect answer",
-    choice4: "incorrect answer",
-    answer: "correct answer",
-}, {
+    choices: ["choice1", "choice2", "choice3", "choice4"],
+    answer: "choice2",
+  },
+  {
     question: "I am question 2",
-    choice1: "incorrect answer",
-    choice2: "correct answer",
-    choice3:"incorrect answer",
-    choice4: "incorrect answer",
-    answer: "correct answer",
-}, {
+    choices: ["choice1", "choice2", "choice3", "choice4"],
+    answer: "choice3",
+  },
+  {
     question: "I am question 3",
-    choice1: "incorrect answer",
-    choice2: "incorrect answer",
-    choice3: "correct answer",
-    choice4: "incorrect answer",
-    answer: "correct answer",
-},] 
-console.log (questions) 
-console.log (questions[1].choice2)
-var questionIndex 
+    choices: ["choice1", "choice2", "choice3", "choice4"],
+    answer: "choice4",
+  },
+];
 
+console.log(questions);
+console.log(questions[1].choices[0]);
+var questionIndex;
+var timeLeft;
 
-function checkAnswer(event) {
-console.log (event)
-}
+function checkAnswer(event) {}
 
-
-
-
-function startQuiz () {
-    console.log ("I need to start the quiz")
-    questionIndex = 0
-    displayQuestion()
+function startQuiz() {
+  console.log("I need to start the quiz");
+  questionIndex = 0;
+  timeLeft = 60;
+  displayQuestion();
 }
 
 function displayQuestion() {
-    document.getElementById("question").textContent = questions[questionIndex].question
-    document.getElementById("choice1").textContent = questions[questionIndex].choice1
-    document.getElementById("choice2").textContent = questions[questionIndex].choice2
-    document.getElementById("choice3").textContent = questions[questionIndex].choice3
-    document.getElementById("choice4").textContent = questions[questionIndex].choice4
+  var question = document.createElement("h1");
+  question.textContent = questions[questionIndex].question;
+  quizPage.appendChild(question);
+  for (
+    let index = 0;
+    index < questions[questionIndex].choices.length;
+    index++
+  ) {
+    const choice = questions[questionIndex].choices[index];
+    var questionButton = document.createElement("button");
+    questionButton.textContent = choice;
+    questionButton.addEventListener("click", choicesSelector);
+    quizPage.appendChild(questionButton);
+  }
 }
 
+function choicesSelector(event) {
+  console.log(event.target);
+  var userChoice = event.target.textContent;
+  var currentAnswer = questions[questionIndex].answer;
+  if (userChoice !== currentAnswer) {
+    timeLeft -= 5;
+    console.log(timeLeft);
+  }
+  questionIndex++ 
+  quizPage.innerHTML=""
+  displayQuestion()
+
+}
+
+document.getElementById("startquiz").addEventListener("click", startQuiz);
+document.getElementById("quiz-page").addEventListener("click", checkAnswer);
 
 
-
-
-
-
-
-
-
-
-
-document.getElementById("startquiz").addEventListener("click", startQuiz)
-document.getElementById("quiz-page").addEventListener("click", checkAnswer)
+// add timer and keep track of time. 
