@@ -1,36 +1,51 @@
-/* :root {
-    background-color: white;
-    font-size: 62.5%;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
+
+
+:root {
+
+    --yellow: #FFBE0B;
+    --orange: #FB5607;
+    --purple: #8338EC;
+    --blue: #3A86FF;
+    --pink: #FF006E;
+    --light-blue: #bde0fe;
+
 
 }
+
 *{
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    color: purple;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    background-color:var(--light-blue);
+
 }
 
-h1,
-h2,
-h3,
-h4 {
-    margin-bottom: 1rem;
+#startquiz {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
 }
 
-h1 {
-    font-size: 6rem;
-    color: lightblue;
-    margin-bottom: 5rem;
+#header-text {
+    justify-content: center;
+    color: var(--blue);
+    text-align: center;
 }
 
-h2 {
-    font-size: 4.5rem;
-    margin-bottom: 4rem;
-    font-weight: 700;
+#header-text:hover {
+color: var(--orange);
 }
 
-h3 {
-    font-size: 2rem;
-    font-weight: 500;
-} */
+#timer {
+    background-color: var(--orange);
+    color: var(--light-blue);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 10vh;
+    font-size: 30px;
+}

@@ -1,20 +1,21 @@
+var countdownTimer = document.getElementById("timer");
 var quizPage = document.getElementById("quiz-page");
 questionIndex = 0;
 var questions = [
   {
     question: "What is an array?",
-    choices: ["a type of application", "a list of items", "css styling technique", "an html feature"],
-    answer: "a list of items",
+    choices: ["A type of application", "A list of items", "Css styling technique", "An html feature"],
+    answer: "A list of items",
   },
   {
-    question: "What does CSS stand for?",
-    choices: ["Correct Style Sheet", "Cascading Sheet Structure", "Cascading Style Sheets", "Cascading Structure Sheet"],
-    answer: "Cascading Style Sheet",
+    question: "What is JQuery?",
+    choices: ["A website plugin", "The first version of JavaScript", "A fast, small, and feature-rich JavaScript library", "A feature no longer in use"],
+    answer: "A fast, small, and feature-rich JavaScript library",
   },
   {
-    question: "What is GitHub?",
-    choices: ["choice1", "choice2", "choice3", "choice4"],
-    answer: "choice4",
+    question: "What is a Variable?",
+    choices: ["A way to link your JavaScript to an HTML page", "A command used only in If statements", "A type of Css styling", "Stores values for future use"],
+    answer: "Stores values for future use",
   },
 ];
 
@@ -32,6 +33,10 @@ function startQuiz() {
   console.log("I need to start the quiz");
 //   questionIndex = 0;
   timeLeft = 60;
+  var quizTimer = setInterval(function() {
+    timeLeft --;
+    countdownTimer.textContent = timeLeft;
+  } ,1000);
   displayQuestion();
 }
 
