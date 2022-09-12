@@ -49,3 +49,15 @@ color: var(--orange);
     height: 10vh;
     font-size: 30px;
 }
+.final {
+    color: black;
+}
+
+#quiz-page {
+    display: none;
+
+}
+
+#high-score-page {
+    display: none;
+}

@@ -1,5 +1,9 @@
 var countdownTimer = document.getElementById("timer");
+console.log(countdownTimer);
 var quizPage = document.getElementById("quiz-page");
+var startPage = document.getElementById("start-page");
+var highScorePage = document.getElementById("high-score-page");
+var submitButton = document.getElementById("submit-score");
 questionIndex = 0;
 var questions = [
   {
@@ -26,18 +30,44 @@ console.log(questions);
 console.log(questions[1].choices[0]);
 var questionIndex;
 var timeLeft;
+var quizTimer;
 
 function checkAnswer(event) {}
 
 function startQuiz() {
-  console.log("I need to start the quiz");
-//   questionIndex = 0;
   timeLeft = 60;
-  var quizTimer = setInterval(function() {
+  startTimer();
+  startPage.style.display ="none";
+  quizPage.style.display ="block";
+  displayQuestion();
+}
+
+function endGame() {
+clearInterval(quizTimer);
+quizPage.style.display ="none";
+highScorePage.style.display ="block";
+document.getElementById("score").textContent = timeLeft;
+}
+
+function startTimer() {
+   quizTimer = setInterval(function() {
     timeLeft --;
     countdownTimer.textContent = timeLeft;
   } ,1000);
-  displayQuestion();
+}
+
+function submitScore() {
+  var initials = document.getElementById("initials");
+  var allHighScores = localStorage.getItem("high-scores");
+  var newPerson = {
+    initials: initials,
+    score: timeLeft,
+  }
+  allHighScores.push(newPerson)
+  localStorage.setItem(
+    "high-score", allHighScores
+  )
+
 }
 
 function displayQuestion() {
@@ -70,16 +100,18 @@ function choicesSelector(event) {
   if (lastQuestion !== questions[questionIndex].question) {
     questionIndex++ 
 } else {
-    console.log ("youre done")
-    document.body.remove()
+  
+  endGame()
+   
  }
  quizPage.innerHTML="" 
-  displayQuestion()
+  displayQuestion() 
 
 }
 
 document.getElementById("startquiz").addEventListener("click", startQuiz);
 document.getElementById("quiz-page").addEventListener("click", checkAnswer);
+submitButton.addEventListener("click", submitScore);
 
 
 // add timer and keep track of time. 
