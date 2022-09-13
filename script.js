@@ -4,6 +4,7 @@ var quizPage = document.getElementById("quiz-page");
 var startPage = document.getElementById("start-page");
 var highScorePage = document.getElementById("high-score-page");
 var submitButton = document.getElementById("submit-score");
+var submitQuiz = document.getElementById("high-scores");
 questionIndex = 0;
 var questions = [
   {
@@ -57,15 +58,30 @@ function startTimer() {
 }
 
 function submitScore() {
-  var initials = document.getElementById("initials");
+  var initials = document.getElementById("initials").value;
   var allHighScores = localStorage.getItem("high-scores");
+  if (!allHighScores) {
+    allHighScores = []
+  }
+  else {
+    allHighScores= JSON.parse(allHighScores)
+  }
   var newPerson = {
     initials: initials,
     score: timeLeft,
   }
+  console.log(newPerson);
+  console.log(allHighScores);
   allHighScores.push(newPerson)
+  console.log(allHighScores)
+  submitQuiz.innerHTML=""
+  allHighScores.forEach(scoreObject => {
+   var highscoreDiv= document.createElement("p")
+   highscoreDiv.textContent = scoreObject.initials + " : " + scoreObject.score
+   submitQuiz.appendChild(highscoreDiv)
+  });
   localStorage.setItem(
-    "high-score", allHighScores
+    "high-scores", JSON.stringify(allHighScores)
   )
 
 }
