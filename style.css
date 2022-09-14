@@ -52,12 +52,3 @@ color: var(--orange);
 .final {
     color: black;
 }
-
-#quiz-page {
-    display: none;
-
-}
-
-#high-score-page {
-    display: none;
-}

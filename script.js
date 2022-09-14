@@ -1,5 +1,4 @@
 var countdownTimer = document.getElementById("timer");
-console.log(countdownTimer);
 var quizPage = document.getElementById("quiz-page");
 var startPage = document.getElementById("start-page");
 var highScorePage = document.getElementById("high-score-page");
@@ -25,10 +24,6 @@ var questions = [
 ];
 
 var lastQuestion = questions[2].question;
-console.log(lastQuestion)
-
-console.log(questions);
-console.log(questions[1].choices[0]);
 var questionIndex;
 var timeLeft;
 var quizTimer;
@@ -70,8 +65,6 @@ function submitScore() {
     initials: initials,
     score: timeLeft,
   }
-  console.log(newPerson);
-  console.log(allHighScores);
   allHighScores.push(newPerson)
   console.log(allHighScores)
   submitQuiz.innerHTML=""
@@ -85,7 +78,6 @@ function submitScore() {
   )
 
 }
-
 function displayQuestion() {
   var question = document.createElement("h1");
   question.textContent = questions[questionIndex].question;
